@@ -30,7 +30,7 @@ const InstructorSignUp = (props) => {
         }
         e.preventDefault();
         history.push('/dashboard')
-        // <Redirect to='/dashboard' />
+        //<Redirect to='/dashboard' />
     }
      
        return (
