@@ -58,11 +58,13 @@ const InstructorSignUp = (props) => {
 
                      <label> Choose Your Role </label>
 
+                    <label>Instructor</label>
                      <input id='instructor'
                      name='instructor'
                      type='radio'
                      value='yes' />
 
+                    <label>Client</label>
                     <input id='client'
                      name='client'
                      type='radio'
