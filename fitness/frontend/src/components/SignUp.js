@@ -55,6 +55,19 @@ const InstructorSignUp = (props) => {
                      type='email'
                      value={formValues.email} 
                      onChange={handleChanges}/>
+
+                     <label> Choose Your Role </label>
+
+                     <input id='instructor'
+                     name='instructor'
+                     type='radio'
+                     value='yes' />
+
+                    <input id='client'
+                     name='client'
+                     type='radio'
+                     value='yes' />
+
      
                  <button id='submit'>Submit</button>
              </form>

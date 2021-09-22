@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 // import ProtectedRoute from './components/ProtectedRoute';
 
-import InstructorLogin from './components/InstructorLogin';
-import InstructorSignUp from './components/InstructorSignUp';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 import DashBoard from './components/DashBoard'
 
 
@@ -28,11 +28,11 @@ function App() {
         {/* <ProtectedRoute exact path="/protected" component={InstructorDashboard} /> */}  
 
             <Route path="/login">
-                <InstructorLogin />
+                <Login />
             </Route>
 
             <Route path="/sign-up">
-                <InstructorSignUp />
+                <SignUp />
             </Route>
 
             <Route path="/dashboard">
