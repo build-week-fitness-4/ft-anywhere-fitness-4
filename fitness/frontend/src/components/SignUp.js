@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Redirect } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const InstructorSignUp = (props) => {
 
   const [formValues, setFormValues] = useState(initialValues);
   const [ error, setError ] = useState('')
-  // const { push } = useHistory()
+  const history  = useHistory()
 
 
     const handleChanges = (e) => {
@@ -29,7 +29,8 @@ const InstructorSignUp = (props) => {
           setError('All fields are required!')
         }
         e.preventDefault();
-        <Redirect to='/dashboard' />
+        history.push('/dashboard')
+        //<Redirect to='/dashboard' />
     }
      
        return (
@@ -55,6 +56,21 @@ const InstructorSignUp = (props) => {
                      type='email'
                      value={formValues.email} 
                      onChange={handleChanges}/>
+
+                     <label> Choose Your Role </label>
+
+                    <label>Instructor</label>
+                     <input id='instructor'
+                     name='instructor'
+                     type='radio'
+                     value='yes' />
+
+                    <label>Client</label>
+                    <input id='client'
+                     name='client'
+                     type='radio'
+                     value='yes' />
+
      
                  <button id='submit'>Submit</button>
              </form>

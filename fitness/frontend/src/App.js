@@ -1,16 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 // import ProtectedRoute from './components/ProtectedRoute';
 
-import InstructorLogin from './components/InstructorLogin';
-import InstructorSignUp from './components/InstructorSignUp';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 import DashBoard from './components/DashBoard'
-import ClassForm from './components/ClassForm'
+import Logout from './components/Logout';
+import FitClass from './components/FitClass';
+import AddClassForm from './components/AddClassForm';
 
 
-function App() {
+function App(props) {
 
   // const isLoggedIn = localStorage.getItem('token');
+  const [fitClasses, setFitClasses] = useState([]);
+
+  const deleteClass = (id)=> {
+    setFitClasses(fitClasses.filter(fitClass => (fitClass.id !== id)))
+  }
 
   return (
     <div className="App">
@@ -29,15 +36,23 @@ function App() {
         {/* <ProtectedRoute exact path="/protected" component={InstructorDashboard} /> */}  
 
             <Route path="/login">
-                <InstructorLogin />
+                <Login />
             </Route>
 
             <Route path="/sign-up">
-                <InstructorSignUp />
+                <SignUp />
             </Route>
 
-            <Route path="/add-class">
-                <ClassForm />
+            <Route path="/sign-up">
+                <Logout />
+            </Route>
+
+            <Route path="/classes/:id">
+              <FitClass deleteClass={deleteClass}/>
+            </Route>
+
+            <Route path="/classes/add">
+                <AddClassForm setFitClasses={setFitClasses}/>
             </Route>
 
 

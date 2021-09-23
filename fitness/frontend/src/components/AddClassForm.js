@@ -12,7 +12,7 @@ const initialFormValues = {
 
 };
 
-const ClassForm = props => {
+const AddClassForm = props => {
 
     const [fitClass, setFitClass] = useState(initialFormValues)
 
@@ -35,9 +35,7 @@ const ClassForm = props => {
               onChange={handleChanges}
               value={initialFormValues.name}
               />
-        </form>
-
-        <form onSubmit={handleSubmit}>
+       
           <label htmlFor ='type'>Type:</label>
             <input
             type="text"
@@ -45,9 +43,7 @@ const ClassForm = props => {
             onChange={handleChanges}
             value={initialFormValues.type}
             />
-      </form>
 
-      <form onSubmit={handleSubmit}>
           <label htmlFor ='duration'>Duration:</label>
             <input
             type="text"
@@ -55,9 +51,7 @@ const ClassForm = props => {
             onChange={handleChanges}
             value={initialFormValues.duration}
             />
-      </form>
     
-      <form onSubmit={handleSubmit}>
           <label htmlFor ='level'>Level:</label>
             <input
             type="text"
@@ -65,9 +59,17 @@ const ClassForm = props => {
             onChange={handleChanges}
             value={initialFormValues.level}
             />
-      </form>
 
-      <form onSubmit={handleSubmit}>
+          <label>Location:
+              <select values={initialFormValues.location} name ='location' onChange={handleChanges}>
+                <option value=''>-- Select a Location --</option>
+                <option value='Brooklyn'>Brooklyn</option>
+                <option value='Soho'>Soho</option>
+                <option value='Bed-stuy'>Bed-Stuy</option>
+                <option value='Queens'>Queens</option>
+              </select>
+          </label>
+
           <label htmlFor ='class-size'>Class Size:</label>
             <input
             type="text"
@@ -75,9 +77,7 @@ const ClassForm = props => {
             onChange={handleChanges}
             value={initialFormValues.class_size}
             />
-      </form>
 
-      <form onSubmit={handleSubmit}>
           <label htmlFor ='class-attendees'>Number of Class Attendees:</label>
             <input
             type="text"
@@ -91,7 +91,7 @@ const ClassForm = props => {
   );
 };
   {/* ['Brooklyn', 'SoHo', 'Queens', 'Manhattan'] */}
-export default ClassForm;
+export default AddClassForm;
 
 
   
