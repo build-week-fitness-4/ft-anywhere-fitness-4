@@ -6,6 +6,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import DashBoard from './components/DashBoard'
 import Logout from './components/Logout';
+import Homepage from './components/Homepage';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
       
       <Router>
           <nav>
-            <Link exact to='/'>Home</Link>
+            <Link exact to='/homepage'>Home</Link>
             <Link exact to='/login'>Login</Link>
             <Link exact to='/sign-up'>Sign Up</Link>
             <Link exact to='/classes'>Classes</Link>
@@ -45,9 +46,9 @@ function App() {
             </Route>
 
 
-            {/* <Route exact path="/">
+             <Route exact path="/homepage">
                 <Homepage />
-            </Route> */}
+            </Route> 
         </header>
         
     
