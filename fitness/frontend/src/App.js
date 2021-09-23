@@ -9,7 +9,16 @@ import FitClass from './components/FitClass';
 import EditClassForm from './components/AddClassForm'
 import AddClassForm from './components/AddClassForm';
 import Homepage from './components/Homepage';
+import styled from 'styled-components'
 
+
+const Nav = styled.nav`
+display:flex;
+justify-content:space-around;
+padding:2%;
+background:black;
+
+`
 
 function App(props) {
 
@@ -24,14 +33,14 @@ function App(props) {
     <div className="App">
       
       <Router>
-          <nav>
-            <Link exact to='/homepage'>Home</Link>
-            <Link exact to='/login'>Login</Link>
-            <Link exact to='/sign-up'>Sign Up</Link>
-            <Link exact to='/classes'>Classes</Link>
-            <Link exact to='/logout'>Logout</Link>
+          <Nav>
+            <Link style={{ color: '#FFF' }} exact to='/homepage'>Home</Link>
+            <Link style={{ color: '#FFF' }} exact to='/login'>Login</Link>
+            <Link style={{ color: '#FFF' }} exact to='/sign-up'>Sign Up</Link>
+            <Link style={{ color: '#FFF' }} exact to='/classes'>Classes</Link>
+            <Link style={{ color: '#FFF' }} exact to='/logout'>Logout</Link>
 
-          </nav>
+          </Nav>
         <Switch>
         <header className="App-header">
         {/* <ProtectedRoute exact path="/protected" component={InstructorDashboard} /> */}  

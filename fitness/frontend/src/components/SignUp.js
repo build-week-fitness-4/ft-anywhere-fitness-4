@@ -1,6 +1,12 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+<<<<<<< HEAD
+=======
+import { Redirect } from "react-router-dom";
+import styled from 'styled-components'
+import YogaMat from '../Images/yogaMat.jpg'
+>>>>>>> 0e52be4a575024c61faab6973256d75ab7f8e6e4
 
 
 const initialValues = {
@@ -8,6 +14,44 @@ const initialValues = {
   password: '',
   email: ''
 }
+
+
+  const LoginForm = styled.div`
+    
+    display:flex;
+    justify-content:center;
+    font-family:'Roboto';
+    font-size:1.5rem;
+    background-image: url(${YogaMat});
+    height: 100vh;
+    width: 100%;
+    background-repeat:no-repeat;
+    background-size:cover;
+`
+
+const H1 = styled.h1`
+  border: 5px solid black;
+  border-radius:10px;
+  padding:5%;
+  margin-right:-10%;
+`
+ 
+const Submitform = styled.form`
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+    
+  `
+
+  const Label = styled.label`
+  display:flex;
+  flex-direction:column;
+  margin-top:5%;
+  margin-left:-50%;
+  
+  
+  `
 
 const InstructorSignUp = (props) => {
 
@@ -33,37 +77,38 @@ const InstructorSignUp = (props) => {
      
        return (
          <div>
-           <div className="login-form">
-           <form onSubmit={submit}>
-                 <label htmlFor='username'>Username:</label>
+           <LoginForm className="login-form">
+           <Submitform onSubmit={submit}>
+             <H1>Sign Up Below</H1>
+                 <Label htmlFor='username'>Username:</Label>
                      <input id='username'
                      name='username' 
                      value={formValues.username} 
                      onChange={handleChanges}/>
                      
-                 <label htmlFor='password'>Password:</label>
+                 <Label htmlFor='password'>Password:</Label>
                      <input id='password' 
                      name='password' 
                      type='password'
                      value={formValues.password} 
                      onChange={handleChanges}/>
      
-                 <label htmlFor='email'>Email:</label>
+                 <Label htmlFor='email'>Email:</Label>
                      <input id='email' 
                      name='email' 
                      type='email'
                      value={formValues.email} 
                      onChange={handleChanges}/>
 
-                     <label> Choose Your Role </label>
+                     <Label> Choose Your Role: </Label>
 
-                    <label>Instructor</label>
+                    <Label>Instructor</Label>
                      <input id='instructor'
                      name='instructor'
                      type='radio'
                      value='yes' />
 
-                    <label>Client</label>
+                    <Label>Client</Label>
                     <input id='client'
                      name='client'
                      type='radio'
@@ -71,8 +116,8 @@ const InstructorSignUp = (props) => {
 
      
                  <button id='submit'>Submit</button>
-             </form>
-           </div>
+             </Submitform>
+           </LoginForm>
      
          </div>
        );
