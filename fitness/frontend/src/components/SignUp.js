@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { Redirect } from "react-router-dom";
 
 
 const initialValues = {
@@ -29,8 +28,7 @@ const InstructorSignUp = (props) => {
           setError('All fields are required!')
         }
         e.preventDefault();
-        history.push('/dashboard')
-        //<Redirect to='/dashboard' />
+        history.push('/classes')
     }
      
        return (
