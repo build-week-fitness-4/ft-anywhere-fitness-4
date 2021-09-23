@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import InstructorLogin from './components/InstructorLogin';
 import InstructorSignUp from './components/InstructorSignUp';
 import DashBoard from './components/DashBoard'
+import ClassForm from './components/ClassForm'
 
 
 function App() {
@@ -35,8 +36,8 @@ function App() {
                 <InstructorSignUp />
             </Route>
 
-            <Route path="/dashboard">
-                <DashBoard />
+            <Route path="/add-class">
+                <ClassForm />
             </Route>
 
 
