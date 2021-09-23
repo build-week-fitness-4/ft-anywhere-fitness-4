@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from 'styled-components'
 import Weights from '../Images/weights.jpg'
 
@@ -70,8 +70,7 @@ const InstructorLogin = (props) => {
       setError('Both fields are required!')
     }
     e.preventDefault();
-    history.push('/dashboard')
-    // <Redirect to='/dashboard'/>
+    history.push('/classes')
   }
 
 

@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import DashBoard from './components/DashBoard'
 import Logout from './components/Logout';
 import FitClass from './components/FitClass';
+import EditClassForm from './components/AddClassForm'
 import AddClassForm from './components/AddClassForm';
 import Homepage from './components/Homepage';
 import styled from 'styled-components'
@@ -53,20 +53,23 @@ function App(props) {
                 <SignUp />
             </Route>
 
-            <Route path="/sign-up">
+            <Route path="/logout">
                 <Logout />
             </Route>
 
             <Route path="/classes/:id">
-              <FitClass deleteClass={deleteClass}/>
+              <EditClassForm setFitClasses={setFitClasses}/>
             </Route>
 
             <Route path="/classes/add">
                 <AddClassForm setFitClasses={setFitClasses}/>
             </Route>
 
+            <Route path="/classes/:id">
+              <FitClass deleteClass={deleteClass}/>
+            </Route>
 
-             <Route exact path="/homepage">
+             <Route exact path="/">
                 <Homepage />
             </Route> 
         </header>

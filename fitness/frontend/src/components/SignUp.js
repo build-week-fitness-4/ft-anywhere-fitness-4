@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+<<<<<<< HEAD
+=======
 import { Redirect } from "react-router-dom";
 import styled from 'styled-components'
 import YogaMat from '../Images/yogaMat.jpg'
+>>>>>>> 0e52be4a575024c61faab6973256d75ab7f8e6e4
 
 
 const initialValues = {
@@ -69,8 +72,7 @@ const InstructorSignUp = (props) => {
           setError('All fields are required!')
         }
         e.preventDefault();
-        history.push('/dashboard')
-        //<Redirect to='/dashboard' />
+        history.push('/classes')
     }
      
        return (

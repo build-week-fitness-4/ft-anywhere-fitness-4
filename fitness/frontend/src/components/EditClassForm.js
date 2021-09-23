@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useParams, useHistory } from "react-router-dom"
+import React, { useState, useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-
 
 const initialFormValues = {
   name: '',
@@ -15,35 +13,43 @@ const initialFormValues = {
 
 };
 
-const AddClassForm = props => {
+const EditClassForm = props => {
 
-  const history = useHistory();
-  const { id } = useParams();
+    const history = useHistory();
+	const { id } = useParams();
+    const [fitClass, setFitClass] = useState(initialFormValues)
 
-  const [newClass, setNewClass] = useState(initialFormValues)
+    useEffect(() => {
+		axiosWithAuth()
+            .get(`/classes/${id}`)
+			.then(res => {
+				setFitClass(res.data)
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}, [])
 
-  const handleChanges = (e) => {
-    setNewClass({ ...newClass, [e.target.name]: e.target.value })
-  };  
+    const handleChanges = (e) => {
+      setFitClass({ ...fitClass, [e.target.name]: e.target.value })
+    };  
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    axiosWithAuth()
-    .post(`/classes/`, newClass)
-          .then(res => {
-              console.log(res)
-              setNewClass((fitClass)=> [...fitClasses, newClass])
-              history.push(`/classes/`)
-          })
-          .catch(err => {
-              console.log(err)
-          })
-      }
+    const handleSubmit = e => {
+      e.preventDefault();
+      axiosWithAuth()
+        .put(`/classes/${id}`, fitClass)
+        .then(res => {
+            props.setFitClass(res.data);
+            history.push(`/classes/${id}`)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     };
 
     return (
       <div>
-        <h2>Add New Class</h2>
+        <h2>Edit Class</h2>
         <form onSubmit={handleSubmit}>
             <label htmlFor ='name'>Name:</label>
               <input
@@ -103,12 +109,11 @@ const AddClassForm = props => {
             value={initialFormValues.class_attendees}
             />
       </form>
-      <button className="md-button form-button">Add New Class</button>
+      <button className="md-button form-button">Submit</button>
     </div>
   );
 };
-  {/* ['Brooklyn', 'SoHo', 'Queens', 'Manhattan'] */}
-export default AddClassForm;
+export default EditClassForm;
 
 
   
