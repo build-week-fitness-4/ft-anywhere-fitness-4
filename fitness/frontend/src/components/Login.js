@@ -2,12 +2,56 @@ import React, {useState} from "react";
 import { useHistory } from "react-router";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Link, Redirect } from "react-router-dom";
+import styled from 'styled-components'
+import Weights from '../Images/weights.jpg'
+
+
+const Page = styled.div`
+background-image: url(${Weights});
+  height: 100vh;
+    width: 100%;
+    background-repeat:no-repeat;
+    background-size:cover;
+
+`
 
 
 const initialValues = {
   username: '', 
   password: ''
 }
+
+const Welcome = styled.h1`
+    display:flex;
+    justify-content:center;
+    background:black;
+    color:white;
+    font-family:'Roboto';
+  `
+
+  const EntryLabel = styled.label`
+  display:flex;
+  justify-content:center;
+  font-family:'Roboto';
+
+
+  `
+
+  const Loginform = styled.form`
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    margin-right:40%;
+    margin-left:40%;
+  `
+
+  const Input = styled.input`
+
+  display:flex;
+  justify-content:center;
+  `
+
+
 
 const InstructorLogin = (props) => {
 
@@ -29,19 +73,21 @@ const InstructorLogin = (props) => {
     history.push('/dashboard')
     // <Redirect to='/dashboard'/>
   }
-   
+
+
+
     return (
-      <div>
-        <h1>Welcome!</h1>
+      <Page>
+        <Welcome>Welcome!</Welcome>
         <div className="login-form">
-          <form onSubmit={login}>
-              <label htmlFor='username'>Username:</label>
+          <Loginform onSubmit={login}>
+              <EntryLabel htmlFor='username'>Username:</EntryLabel>
                   <input id='username'
                   name='username' 
                   value={formValues.username} 
                   onChange={handleChanges}/>
                     
-              <label htmlFor='password'>Password:</label>
+              <EntryLabel htmlFor='password'>Password:</EntryLabel>
                   <input id='password' 
                   name='password' 
                   type='password'
@@ -49,9 +95,9 @@ const InstructorLogin = (props) => {
                   onChange={handleChanges}/>
               <button id='submit'>Login</button>
               <Link to='/instructor-sign-up'> Not an instructor?</Link>
-          </form>
+          </Loginform>
         </div>
-    </div>
+    </Page>
      );
   
 }
