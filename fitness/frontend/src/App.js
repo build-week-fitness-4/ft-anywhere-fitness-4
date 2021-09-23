@@ -69,7 +69,7 @@ function App(props) {
               <FitClass deleteClass={deleteClass}/>
             </Route>
 
-             <Route exact path="/">
+             <Route exact path="/homepage">
                 <Homepage />
             </Route> 
         </header>
