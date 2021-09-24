@@ -1,102 +1,90 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-
-import axios from 'axios';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const EditClassForm = (props) => {
-    const { push } = useHistory();
-    const { id } = useParams();
+const initialFormValues = {
+  name: '',
+  type: '',
+  duration: '',
+  level: '',
+  location: [],
+  class_size: '',
+  class_attendees: ''
 
+};
 
-    const [ newClass, setNewClass ] = useState ({
-        class_name: '',
-        type: '',
-        time: '',
-        duration:'',
-        intensity: '',
-        location: [],
-        attendees: '',
-        size: ''
-    });
+const EditClassForm = props => {
+
+    const history = useHistory();
+	const { id } = useParams();
+    const [fitClass, setFitClass] = useState(initialFormValues)
 
     useEffect(() => {
-        axiosWithAuth()
-        .get(`api/classes/${id}`)
-        .then(res => {
-            setNewClass(res.data)
-        })
-    }, {});
+		axiosWithAuth()
+            .get(`/classes/${id}`)
+			.then(res => {
+				setFitClass(res.data)
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}, [])
 
-    const handleChange = (e) => {
-        setNewClass({
-            ...newClass,
-            [e.target.name]: e.target.value
-        });
-    }
+    const handleChanges = (e) => {
+      setFitClass({ ...fitClass, [e.target.name]: e.target.value })
+    };  
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axiosWithAuth()
-        .put(`api/classes/${id}`, newClass)
+    const handleSubmit = e => {
+      e.preventDefault();
+      axiosWithAuth()
+        .put(`/classes/${id}`, fitClass)
         .then(res => {
-            props.setNewClass(res.data);
-            push(`/classes/${id}`);
+            props.setFitClass(res.data);
+            history.push(`/classes/${id}`)
         })
         .catch(err => {
             console.log(err)
         })
-    }
-
-    const {class_name, type, time, duration, intensity, location, attendees, size} = newClass
+    };
 
     return (
-        <div>
+      <div>
         <h2>Edit Class</h2>
         <form onSubmit={handleSubmit}>
             <label htmlFor ='name'>Name:</label>
               <input
               type="text"
               name="name"
-              onChange={handleChange}
-              value={class_name}
+              onChange={handleChanges}
+              value={initialFormValues.name}
               />
        
           <label htmlFor ='type'>Type:</label>
             <input
             type="text"
             name="type"
-            onChange={handleChange}
-            value={type}
-            />
-
-          <label htmlFor ='time'>Time:</label>
-            <input
-            type="text"
-            name="time"
-            onChange={handleChange}
-            value={time}
+            onChange={handleChanges}
+            value={initialFormValues.type}
             />
 
           <label htmlFor ='duration'>Duration:</label>
             <input
             type="text"
             name="duration"
-            onChange={handleChange}
-            value={duration}
+            onChange={handleChanges}
+            value={initialFormValues.duration}
             />
     
-          <label htmlFor ='level'>Intensity:</label>
+          <label htmlFor ='level'>Level:</label>
             <input
             type="text"
             name="level"
-            onChange={handleChange}
-            value={intensity}
+            onChange={handleChanges}
+            value={initialFormValues.level}
             />
 
           <label>Location:
-              <select values={location} name ='location' onChange={handleChange}>
+              <select values={initialFormValues.location} name ='location' onChange={handleChanges}>
                 <option value=''>-- Select a Location --</option>
                 <option value='Brooklyn'>Brooklyn</option>
                 <option value='Soho'>Soho</option>
@@ -109,22 +97,41 @@ const EditClassForm = (props) => {
             <input
             type="text"
             name="class-size"
-            onChange={handleChange}
-            value={size}
+            onChange={handleChanges}
+            value={initialFormValues.class_size}
             />
 
           <label htmlFor ='class-attendees'>Number of Class Attendees:</label>
             <input
             type="text"
             name="class-attendees"
-            onChange={handleChange}
-            value={attendees}
+            onChange={handleChanges}
+            value={initialFormValues.class_attendees}
             />
       </form>
-      <button className="md-button form-button">Submit Edit</button>
+      <button className="md-button form-button">Submit</button>
     </div>
   );
-
-} 
-
+};
 export default EditClassForm;
+
+
+  
+
+  
+
+     
+
+      
+
+      
+    
+
+
+
+       
+       
+      
+
+       
+
