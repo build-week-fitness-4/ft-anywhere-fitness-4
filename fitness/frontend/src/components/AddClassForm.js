@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const initialFormValues = {
-  name: '',
+  class_name: '',
   type: '',
-  duration: '',
-  level: '',
+  time: '',
+  duration:'',
+  intensity: '',
   location: [],
-  class_size: '',
-  class_attendees: ''
-
+  attendees: '',
+  size: ''
 };
 
 const AddClassForm = props => {
@@ -33,7 +33,7 @@ const AddClassForm = props => {
               type="text"
               name="name"
               onChange={handleChanges}
-              value={initialFormValues.name}
+              value={initialFormValues.class_name}
               />
        
           <label htmlFor ='type'>Type:</label>
@@ -42,6 +42,14 @@ const AddClassForm = props => {
             name="type"
             onChange={handleChanges}
             value={initialFormValues.type}
+            />
+
+          <label htmlFor ='time'>Time:</label>
+            <input
+            type="text"
+            name="time"
+            onChange={handleChanges}
+            value={initialFormValues.time}
             />
 
           <label htmlFor ='duration'>Duration:</label>
@@ -57,7 +65,7 @@ const AddClassForm = props => {
             type="text"
             name="level"
             onChange={handleChanges}
-            value={initialFormValues.level}
+            value={initialFormValues.intensity}
             />
 
           <label>Location:
@@ -75,7 +83,7 @@ const AddClassForm = props => {
             type="text"
             name="class-size"
             onChange={handleChanges}
-            value={initialFormValues.class_size}
+            value={initialFormValues.size}
             />
 
           <label htmlFor ='class-attendees'>Number of Class Attendees:</label>
@@ -83,7 +91,7 @@ const AddClassForm = props => {
             type="text"
             name="class-attendees"
             onChange={handleChanges}
-            value={initialFormValues.class_attendees}
+            value={initialFormValues.attendees}
             />
       </form>
       <button className="md-button form-button">Add New Class</button>
