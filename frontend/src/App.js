@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import { axiosWithAuth } from './utils/axiosWithAuth';
@@ -18,75 +18,76 @@ function App(props) {
   // const isLoggedIn = localStorage.getItem('token');
   const [fitClasses, setFitClasses] = useState([]);
 
-  const deleteClass = (id)=> {
+  const deleteClass = (id) => {
     setFitClasses(fitClasses.filter(fitClass => (fitClass.id !== id)))
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     axiosWithAuth()
-    .get(`/classes`)
-			.then(res => {
+      .get(`/classes`)
+      .then(res => {
         console.log(res.data)
-				// setFitClasses(res.data)
-			})
-			.catch(err => {
-				console.log(err)
-			})
+        // setFitClasses(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }, [])
 
   return (
     <div className="App">
-      
-      <Router>
-          <nav>
-            <Link exact to='/homepage'>Home</Link>
-            <Link exact to='/login'>Login</Link>
-            <Link exact to='/sign-up'>Sign Up</Link>
-            <Link exact to='/classes'>Classes</Link>
-            <Link exact to='/logout'>Logout</Link>
 
-          </nav>
+      <Router>
+        <nav>
+          <Link exact to='/homepage'>Home</Link>
+          <Link exact to='/login'>Login</Link>
+          <Link exact to='/sign-up'>Sign Up</Link>
+          <Link exact to='/classes'>Classes</Link>
+          <Link exact to='/logout'>Logout</Link>
+
+        </nav>
         <Switch>
-        <header className="App-header">
-          
-        <PrivateRoute path="/classes" component={FitClassList} fitClasses={fitClasses} />  
+          <header className="App-header">
+
+            <PrivateRoute path="/classes" component={FitClassList} fitClasses={fitClasses} />
 
 
             <Route path="/login">
-                <Login />
+              <Login />
             </Route>
 
             <Route path="/sign-up">
-                <SignUp />
+              <SignUp />
             </Route>
 
             <Route path="/logout">
-                <Logout />
+              <Logout />
             </Route>
 
             <Route path="/classes/edit/:id">
-              <EditClassForm setFitClasses={setFitClasses}/>
+              <EditClassForm setFitClasses={setFitClasses} />
             </Route>
 
             <Route path="/classes/add">
-                <AddClassForm setFitClasses={setFitClasses}/>
+              <AddClassForm setFitClasses={setFitClasses} />
             </Route>
 
             <Route path="/classes/:id">
-              <FitClass deleteClass={deleteClass}/>
+              <FitClass deleteClass={deleteClass} />
             </Route>
 
 
-             <Route exact path="/">
-                <Homepage />
-            </Route> 
-        </header>
-        
-    
+            <Route exact path="/homepage">
+              <Homepage />
+            </Route>
+            
+          </header>
+
+
         </Switch>
       </Router>
     </div>
-    
+
   );
 }
 
