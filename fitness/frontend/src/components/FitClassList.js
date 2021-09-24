@@ -12,8 +12,9 @@ const FitClassList = (props)=> {
                 <tr>
                     <th>Name</th>
                     <th>Type</th>
+                    <th>Time</th>
                     <th>Duration</th>
-                    <th>Level</th>
+                    <th>Intensity</th>
                     <th>Location</th>
                     <th>Class Size</th>
                     <th>Class Attendees</th>
@@ -23,7 +24,7 @@ const FitClassList = (props)=> {
 
                 <tbody>
                     {
-                        fitClasses.map(fitClass=><FitClassItem key={fitClass.id} fitClass={fitClass}/>)
+                      fitClasses && fitClasses.map(fitClass=> <FitClassItem key={fitClass.id} fitClass={fitClass}/>)
                     }
                 </tbody>
             </table>

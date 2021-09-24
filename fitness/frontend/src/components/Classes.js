@@ -4,7 +4,7 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
 const Classes = (props) => {
-    const { deleteClass } = props;
+    const  deleteClass  = props;
     const [fitClass, setFitClass] = useState('')
 
     const { id } = useParams();
@@ -13,7 +13,7 @@ const Classes = (props) => {
     useEffect(() => {
         console.log(id)
         axiosWithAuth()
-            .get(`api/classes/${id}`)
+            .get(`classes/${id}`)
             .then(res => {
                 setFitClass(res.data)
             })
@@ -24,7 +24,7 @@ const Classes = (props) => {
 
     const handleDelete = () => {
         axiosWithAuth()
-            .delete(`api/classes/${id}`)
+            .delete(`classes/${id}`)
             .then(res => {
                 props.deleteClass(id)
                 history.push('/classes')

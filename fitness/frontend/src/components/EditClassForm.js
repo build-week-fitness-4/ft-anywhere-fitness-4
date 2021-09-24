@@ -3,15 +3,16 @@ import { useParams, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialFormValues = {
-  name: '',
+  class_name: '',
   type: '',
-  duration: '',
-  level: '',
+  time: '',
+  duration:'',
+  intensity: '',
   location: [],
-  class_size: '',
-  class_attendees: ''
-
+  attendees: '',
+  size: ''
 };
+
 
 const EditClassForm = props => {
 
@@ -56,7 +57,7 @@ const EditClassForm = props => {
               type="text"
               name="name"
               onChange={handleChanges}
-              value={initialFormValues.name}
+              value={initialFormValues.class_name}
               />
        
           <label htmlFor ='type'>Type:</label>
@@ -65,6 +66,14 @@ const EditClassForm = props => {
             name="type"
             onChange={handleChanges}
             value={initialFormValues.type}
+            />
+
+          <label htmlFor ='time'>Time:</label>
+            <input
+            type="text"
+            name="time"
+            onChange={handleChanges}
+            value={initialFormValues.time}
             />
 
           <label htmlFor ='duration'>Duration:</label>
@@ -80,7 +89,7 @@ const EditClassForm = props => {
             type="text"
             name="level"
             onChange={handleChanges}
-            value={initialFormValues.level}
+            value={initialFormValues.intensity}
             />
 
           <label>Location:

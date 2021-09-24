@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import ProtectedRoute from './components/ProtectedRoute';
+import PrivateRoute from './components/PrivateRoute';
 import { axiosWithAuth } from './utils/axiosWithAuth';
 
 import Login from './components/Login';
@@ -26,7 +26,8 @@ function App(props) {
     axiosWithAuth()
     .get(`/classes`)
 			.then(res => {
-				setFitClasses(res.data)
+        console.log(res.data)
+				// setFitClasses(res.data)
 			})
 			.catch(err => {
 				console.log(err)
@@ -48,7 +49,7 @@ function App(props) {
         <Switch>
         <header className="App-header">
           
-        <ProtectedRoute path="/classes" component={FitClassList} fitClasses={fitClasses} />  
+        <PrivateRoute path="/classes" component={FitClassList} fitClasses={fitClasses} />  
 
 
             <Route path="/login">
