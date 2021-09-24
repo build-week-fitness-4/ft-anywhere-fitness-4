@@ -3,16 +3,17 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
-const FitClass = (props) => {
+const Classes = (props) => {
     const { deleteClass } = props;
-    const [fitClass, setFitClass] = useState([])
+    const [fitClass, setFitClass] = useState('')
 
     const { id } = useParams();
     const history = useHistory()
 
     useEffect(() => {
+        console.log(id)
         axiosWithAuth()
-            .get(`classes/${id}`)
+            .get(`api/classes/${id}`)
             .then(res => {
                 setFitClass(res.data)
             })
@@ -23,7 +24,7 @@ const FitClass = (props) => {
 
     const handleDelete = () => {
         axiosWithAuth()
-            .delete(`/classes/${id}`)
+            .delete(`api/classes/${id}`)
             .then(res => {
                 props.deleteClass(id)
                 history.push('/classes')
@@ -61,8 +62,9 @@ const FitClass = (props) => {
             </section>
 
             <section>
-                <Link to={`/classes/edit/${fitClass.id}`} className="m-2 btn btn-success">Edit</Link>
+                <Link to={`/classes/edit`} className="m-2 btn btn-success">Edit</Link>
                 <span onClick={handleDelete} className="delete"><input type="button" value="Delete"/></span>
+                <Link to={`/classes/add`} className="m-2 btn btn-success">Add Class</Link>
             </section>
         </div>
     )
@@ -70,5 +72,6 @@ const FitClass = (props) => {
 
 }
 
-export default FitClass;
+export default Classes;
+
 
