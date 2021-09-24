@@ -77,7 +77,7 @@ function App(props) {
             </Route>
 
 
-             <Route exact path="/">
+             <Route exact path="/homepage">
                 <Homepage />
             </Route> 
         </header>
